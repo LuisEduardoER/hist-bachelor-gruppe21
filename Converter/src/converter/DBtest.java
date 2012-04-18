@@ -14,7 +14,7 @@ import java.sql.SQLException;
  */
 public class DBtest {
     public static void main (String[] args) throws SQLException{
-        String url  = "jdbc:mysql://158.38.120.160:3306/test offline sync" ;
+        String url  = "jdbc:mysql://158.38.185.54:3306/test offline sync" ;
         String username = "andre";
         String password  = "f3ilif";
         
