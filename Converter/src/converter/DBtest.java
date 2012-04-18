@@ -25,9 +25,9 @@ public class DBtest {
         /*res = db.selectSqlQuery();
         while (res.next()){
             System.out.println(res.getString(1));
-        } */
+        } 
         db.insertNorskOrdbok();
-        
+        */
         db.disconnect();
     }
 }
