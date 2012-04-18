@@ -12,13 +12,15 @@ public class Ord {
     int id;
     String grunnform;
     String fullform;
+    String ordklasse;
     String beskrivelse;
     
-    public Ord (int id, String grunnform, String fullform, String beskrivelse){
+    public Ord (int id, String grunnform, String fullform, String ordklasse, String beskrivelse){
         this.id = id;
         this.grunnform = grunnform;
         this.fullform = fullform;
-        this.beskrivelse = beskrivelse;
+        this.ordklasse = ordklasse; //substantiv, verb, adjektiv
+        this.beskrivelse = beskrivelse; //kjønn, en/flertall, u/bestemt, gradbøying
     }
 
     public String getBeskrivelse() {
@@ -45,9 +47,15 @@ public class Ord {
     public void setId(int id) {
         this.id = id;
     }
+    public String getOrdklasse() {
+        return ordklasse;
+    }
+    public void setOrdklasse(String ordklasse) {
+        this.ordklasse = ordklasse;
+    }
     @Override
     public String toString() {
-        return "Ord{" + "id=" + id + ", grunnform=" + grunnform + ", fullform=" + fullform + ", beskrivelse=" + beskrivelse + '}';
+        return "Ord{" + "id=" + id + ", grunnform=" + grunnform + ", fullform=" + fullform + ", ordklasse=" + ordklasse + ", beskrivelse=" + beskrivelse + '}';
     }
     
 }
