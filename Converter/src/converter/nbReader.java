@@ -4,14 +4,13 @@
  */
 package converter;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
-import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
@@ -22,9 +21,7 @@ public class nbReader {
         // setter opp arraylist som inneholder beskrivelsene vi vil ha med
         String[] lovligeBeskrivelserTabell = {"substantiv","adjektiv","verb","adverb","pronomen","forkortelse","konjuksjon","determinativ","preposisjon","subjunksjon","interjeksjon","imperativ","infinitiv","presens","preteritum","perfektum-partisipp","presens-partisipp","feminin","maskulin","nøytral","entall","flertall","bestemt","ubestemt","passiv","transitiv","intransitiv","ditransitiv","positiv","komparativ","superlativ"};
         ArrayList<String> lovligeBeskrivelser = new ArrayList<String>();
-        for(int i=0;i<lovligeBeskrivelserTabell.length;i++){
-            lovligeBeskrivelser.add(lovligeBeskrivelserTabell[i]);
-        }
+        lovligeBeskrivelser.addAll(Arrays.asList(lovligeBeskrivelserTabell));
         //databasetilkobling
         DbConnector database = new DbConnector("jdbc:mysql://158.38.189.186:3306/dictionary","andre","f3ilif");
         database.connect();
