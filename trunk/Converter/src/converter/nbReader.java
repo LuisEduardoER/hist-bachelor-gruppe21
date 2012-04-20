@@ -24,7 +24,7 @@ public class nbReader {
         lovligeBeskrivelser.addAll(Arrays.asList(lovligeBeskrivelserTabell));
         String beskrivelse;
         //databasetilkobling
-        DbConnector database = new DbConnector("jdbc:mysql://158.38.189.186:3306/dictionary","andre","f3ilif");
+        DbConnector database = new DbConnector("jdbc:mysql://158.38.188.81:3306/dictionary","andre","f3ilif");
         database.connect();        
         //adresse til filen som skal leses
         String filename = "C:/Users/Andre/Documents/NetBeansProjects/Converter/src/converter/fullform_bm.txt";
@@ -95,13 +95,16 @@ public class nbReader {
                 }                
                 //SETTE SAMMEN BESKRIVELSE IGJEN
                 for (int i=0;i<splitBeskrivelser.length;i++){
-                    beskrivelse += splitBeskrivelser[i]+" ";
+                    if(!splitBeskrivelser[i].equalsIgnoreCase("")){
+                        beskrivelse += splitBeskrivelser[i]+" ";
+                    }
                 }
                 // PRINT UT
                 for (int i=0;i<splitLine.length-3;i++){
                     System.out.print(splitLine[i]+" ");
                 }                
                 System.out.println(beskrivelse);
+                database.insertNorskOrdbok(splitLine[0], splitLine[1], splitLine[2], beskrivelse);
             }// slutt if            
         } // SLUTT WHILE LØKKE
         database.disconnect();
