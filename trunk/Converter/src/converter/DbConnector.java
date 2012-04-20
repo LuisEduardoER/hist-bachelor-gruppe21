@@ -82,4 +82,19 @@ public class DbConnector {
 	}
         return -1;
     }
+    
+    public int insertNyNorskOrdbok(String id, String grunnform, String fullform, String beskrivelse) throws SQLException{
+        int response;
+        Statement statement = (Statement) connection.createStatement();
+        if(statement != null) {
+            try {
+                //response = statement.executeUpdate("INSERT INTO test120 (kolonne2) VALUES ('Mulla')");
+                response = statement.executeUpdate("INSERT INTO nynorsk (id, grunnform, fullform, morfologisk_beskrivelse) VALUES ('"+id+"', '"+grunnform+"', '"+fullform+"', '"+beskrivelse+"')");
+                return response;
+            } catch (SQLException e) {
+                System.out.println("Unable to create statement: "+e.toString());
+            }
+	}
+        return -1;
+    }
 }
