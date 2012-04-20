@@ -68,7 +68,7 @@ public class DbConnector {
        return null;
     }
     
-    public int insertNorskOrdbok() throws SQLException{
+    public int insertNorskOrdbok(String sqlSentence) throws SQLException{
         int response;
         Statement statement = (Statement) connection.createStatement();
         if(statement != null) {

@@ -22,10 +22,10 @@ public class nbReader {
         String[] lovligeBeskrivelserTabell = {"substantiv","adjektiv","verb","adverb","pronomen","forkortelse","konjuksjon","determinativ","preposisjon","subjunksjon","interjeksjon","imperativ","infinitiv","presens","preteritum","perfektum-partisipp","presens-partisipp","feminin","maskulin","nøytral","entall","flertall","bestemt","ubestemt","passiv","transitiv","intransitiv","ditransitiv","positiv","komparativ","superlativ"};
         ArrayList<String> lovligeBeskrivelser = new ArrayList<String>();
         lovligeBeskrivelser.addAll(Arrays.asList(lovligeBeskrivelserTabell));
+        String beskrivelse;
         //databasetilkobling
         DbConnector database = new DbConnector("jdbc:mysql://158.38.189.186:3306/dictionary","andre","f3ilif");
-        database.connect();
-        
+        database.connect();        
         //adresse til filen som skal leses
         String filename = "C:/Users/Andre/Documents/NetBeansProjects/Converter/src/converter/fullform_bm.txt";
         String line;
@@ -37,9 +37,7 @@ public class nbReader {
         
         // START WHILE
         while ( ((line = infile.readLine()) != null) ) {
-            //splitLine = line.split("\\s+");
-            splitLine = line.split("\t");
-            
+            splitLine = line.split("\t");            
             // LØKKE SOM ERSTATTER FORKORTELSER MED FULLE ORD
             for (int i =3; i<splitLine.length-2; i++){
                 //ORDKLASSER
@@ -85,6 +83,7 @@ public class nbReader {
             } // SLUTT PÅ ERSTATTINGSLØKKE
             //SJEKKER OM LINJA ER LENGER ENN 6 KOLONNER
             if(splitLine.length == 6){
+                beskrivelse ="";
                 //SPLITTER DEN MORFOLOGISKE BESKRIVELSEN
                 splitBeskrivelser = splitLine[3].split(" ");
                 //SJEKKER OM ORDENE I SPLITEN ER "LOVLIG" (om vi vil ha dem med)
@@ -93,17 +92,18 @@ public class nbReader {
                     if (!lovligeBeskrivelser.contains(splitBeskrivelser[i])){
                         splitBeskrivelser[i]="";
                     }
+                }                
+                //SETTE SAMMEN BESKRIVELSE IGJEN
+                for (int i=0;i<splitBeskrivelser.length;i++){
+                    beskrivelse += splitBeskrivelser[i]+" ";
                 }
                 // PRINT UT
                 for (int i=0;i<splitLine.length-3;i++){
                     System.out.print(splitLine[i]+" ");
-                }
-                for (int i=0;i<splitBeskrivelser.length;i++){
-                    System.out.print(splitBeskrivelser[i]+" ");
-                }
-                System.out.print("\n");
-            }
+                }                
+                System.out.println(beskrivelse);
+            }// slutt if            
         } // SLUTT WHILE LØKKE
-        
-    }   
+        database.disconnect();
+    } //slutt main()   
 }
