@@ -68,12 +68,13 @@ public class DbConnector {
        return null;
     }
     
-    public int insertNorskOrdbok(String sqlSentence) throws SQLException{
+    public int insertNorskOrdbok(String id, String grunnform, String fullform, String beskrivelse) throws SQLException{
         int response;
         Statement statement = (Statement) connection.createStatement();
         if(statement != null) {
             try {
-                response = statement.executeUpdate("INSERT INTO test120 (kolonne2) VALUES ('Mulla')");
+                //response = statement.executeUpdate("INSERT INTO test120 (kolonne2) VALUES ('Mulla')");
+                response = statement.executeUpdate("INSERT INTO bokmål2 (id, grunnform, fullform, morfologisk_beskrivelse) VALUES ('"+id+"', '"+grunnform+"', '"+fullform+"', '"+beskrivelse+"')");
                 return response;
             } catch (SQLException e) {
                 System.out.println("Unable to create statement: "+e.toString());
