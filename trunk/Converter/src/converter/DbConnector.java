@@ -74,7 +74,7 @@ public class DbConnector {
         if(statement != null) {
             try {
                 //response = statement.executeUpdate("INSERT INTO test120 (kolonne2) VALUES ('Mulla')");
-                response = statement.executeUpdate("INSERT INTO bokmål2 (id, grunnform, fullform, morfologisk_beskrivelse) VALUES ('"+id+"', '"+grunnform+"', '"+fullform+"', '"+beskrivelse+"')");
+                response = statement.executeUpdate("INSERT INTO bokmål (id, grunnform, fullform, morfologisk_beskrivelse) VALUES ('"+id+"', '"+grunnform+"', '"+fullform+"', '"+beskrivelse+"')");
                 return response;
             } catch (SQLException e) {
                 System.out.println("Unable to create statement: "+e.toString());
@@ -88,7 +88,6 @@ public class DbConnector {
         Statement statement = (Statement) connection.createStatement();
         if(statement != null) {
             try {
-                //response = statement.executeUpdate("INSERT INTO test120 (kolonne2) VALUES ('Mulla')");
                 response = statement.executeUpdate("INSERT INTO nynorsk (id, grunnform, fullform, morfologisk_beskrivelse) VALUES ('"+id+"', '"+grunnform+"', '"+fullform+"', '"+beskrivelse+"')");
                 return response;
             } catch (SQLException e) {

@@ -19,7 +19,7 @@ import java.util.Arrays;
 public class bmReader {
     public static void  main (String[] args) throws IOException, SQLException{
         // setter opp arraylist som inneholder beskrivelsene vi vil ha med
-        String[] lovligeBeskrivelserTabell = {"substantiv","adjektiv","verb","adverb","pronomen","forkortelse","konjuksjon","determinativ","preposisjon","subjunksjon","interjeksjon","imperativ","infinitiv","presens","preteritum","perfektum-partisipp","presens-partisipp","feminin","maskulin","nøytral","entall","flertall","bestemt","ubestemt","passiv","transitiv","intransitiv","ditransitiv","positiv","komparativ","superlativ"};
+        String[] lovligeBeskrivelserTabell = {"substantiv","adjektiv","verb","adverb","pronomen","forkortelse","konjuksjon","determinativ","preposisjon","subjunksjon","interjeksjon","imperativ","infinitiv","presens","preteritum","perfektum-partisipp","presens-partisipp","feminin","maskulin","nøytral","maskulin/feminin ","entall","flertall","bestemt","ubestemt","passiv","transitiv","intransitiv","ditransitiv","positiv","komparativ","superlativ"};
         ArrayList<String> lovligeBeskrivelser = new ArrayList<String>();
         lovligeBeskrivelser.addAll(Arrays.asList(lovligeBeskrivelserTabell));
         String beskrivelse;

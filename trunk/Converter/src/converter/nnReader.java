@@ -20,7 +20,7 @@ import java.util.Arrays;
 public class nnReader {
     public static void  main (String[] args) throws IOException, SQLException{
         // setter opp arraylist som inneholder beskrivelsene vi vil ha med
-        String[] lovligeBeskrivelserTabell = {"substantiv","adjektiv","verb","adverb","pronomen","forkortelse","konjuksjon","determinativ","preposisjon","subjunksjon","interjeksjon","imperativ","infinitiv","presens","preteritum","perfektum-partisipp","presens-partisipp","feminin","maskulin","nøytral","entall","flertall","bestemt","ubestemt","passiv","transitiv","intransitiv","ditransitiv","positiv","komparativ","superlativ"};
+        String[] lovligeBeskrivelserTabell = {"substantiv","adjektiv","verb","adverb","pronomen","forkortelse","konjuksjon","determinativ","preposisjon","subjunksjon","interjeksjon","imperativ","infinitiv","presens","preteritum","perfektum-partisipp","presens-partisipp","hokjønn","hankjønn","inkjekjønn","hankjønn/hokjønn","eintal","fleirtal","bunden","ubunden","passiv","transitiv","intransitiv","ditransitiv","positiv","komparativ","superlativ","klammeform"};
         ArrayList<String> lovligeBeskrivelser = new ArrayList<String>();
         lovligeBeskrivelser.addAll(Arrays.asList(lovligeBeskrivelserTabell));
         String beskrivelse;
@@ -28,7 +28,7 @@ public class nnReader {
         DbConnector database = new DbConnector("jdbc:mysql://158.38.188.81:3306/dictionary","andre","f3ilif");
         database.connect();        
         //adresse til filen som skal leses
-        String filename = "C:/Users/Andre/Documents/NetBeansProjects/Converter/src/converter/fullform_bm.txt";
+        String filename = "C:/Users/Andre/Documents/NetBeansProjects/Converter/src/converter/fullform_nn.txt";
         String line;
         String[] splitLine;
         String[] splitBeskrivelser;
@@ -45,7 +45,7 @@ public class nnReader {
                 splitLine[i] = splitLine[i].replaceAll("adj ", "adjektiv ");
                 splitLine[i] = splitLine[i].replaceAll("subst ", "substantiv ");
                 splitLine[i] = splitLine[i].replaceAll("adv ", "adverb ");
-                splitLine[i] = splitLine[i].replaceAll("fork ", "forkortelse ");
+                splitLine[i] = splitLine[i].replaceAll("fork ", "forkorting ");
                 splitLine[i] = splitLine[i].replaceAll("pron ", "pronomen ");
                 splitLine[i] = splitLine[i].replaceAll("konj ", "konjuksjon ");
                 splitLine[i] = splitLine[i].replaceAll("det ", "determinativ ");
@@ -68,15 +68,15 @@ public class nnReader {
                 splitLine[i] = splitLine[i].replaceAll("<perf-part> ", "perfektum-partisipp ");
                 splitLine[i] = splitLine[i].replaceAll("perf-part ", "perfektum-partisipp ");
                 // SLUTT PÅ IF-SETNINGENE                    
-                splitLine[i] = splitLine[i].replaceAll("fem ", "feminin ");
-                splitLine[i] = splitLine[i].replaceAll("mask ", "maskulin ");
-                splitLine[i] = splitLine[i].replaceAll("m/f ", "maskulin/feminin ");
-                splitLine[i] = splitLine[i].replaceAll("nøyt ", "nøytral ");
-                splitLine[i] = splitLine[i].replaceAll("ent ", "entall ");                 
-                splitLine[i] = splitLine[i].replaceAll("fl ", "flertall ");
+                splitLine[i] = splitLine[i].replaceAll("fem ", "hokjønn ");
+                splitLine[i] = splitLine[i].replaceAll("mask ", "hankjønn ");
+                splitLine[i] = splitLine[i].replaceAll("m/f ", "hankjønn/hokjønn ");
+                splitLine[i] = splitLine[i].replaceAll("nøyt ", "inkjekjønn ");
+                splitLine[i] = splitLine[i].replaceAll("ent ", "eintal ");                 
+                splitLine[i] = splitLine[i].replaceAll("fl ", "fleirtal ");
                 // IF SETNINGER FOR Å IKKE ERSTATTE BESTEMT/BESTEMT DOBBELT
-                splitLine[i] = splitLine[i].replaceAll("be ", "bestemt ");
-                splitLine[i] = splitLine[i].replaceAll("ub ", "ubestemt ");
+                splitLine[i] = splitLine[i].replaceAll("be ", "bunden ");
+                splitLine[i] = splitLine[i].replaceAll("ub ", "ubunden ");
                 // IF SETNINGER TRANSITIVITET
                 splitLine[i] = splitLine[i].replaceAll("trans ", "transitiv ");
                 splitLine[i] = splitLine[i].replaceAll("intrans ", "intransitiv ");
@@ -105,7 +105,7 @@ public class nnReader {
                     System.out.print(splitLine[i]+" ");
                 }                
                 System.out.println(beskrivelse);
-                database.insertNorskOrdbok(splitLine[0], splitLine[1], splitLine[2], beskrivelse);
+                database.insertNyNorskOrdbok(splitLine[0], splitLine[1], splitLine[2], beskrivelse);
             }// slutt if            
         } // SLUTT WHILE LØKKE
         database.disconnect();
