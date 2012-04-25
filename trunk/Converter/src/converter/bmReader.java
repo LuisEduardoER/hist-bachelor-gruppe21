@@ -16,7 +16,7 @@ import java.util.Arrays;
  * LESER OG LASTER OPP DATA TIL BOKMÅLORDBOK
  * @author Andre
  */
-public class nbReader {
+public class bmReader {
     public static void  main (String[] args) throws IOException, SQLException{
         // setter opp arraylist som inneholder beskrivelsene vi vil ha med
         String[] lovligeBeskrivelserTabell = {"substantiv","adjektiv","verb","adverb","pronomen","forkortelse","konjuksjon","determinativ","preposisjon","subjunksjon","interjeksjon","imperativ","infinitiv","presens","preteritum","perfektum-partisipp","presens-partisipp","feminin","maskulin","nøytral","entall","flertall","bestemt","ubestemt","passiv","transitiv","intransitiv","ditransitiv","positiv","komparativ","superlativ"};
